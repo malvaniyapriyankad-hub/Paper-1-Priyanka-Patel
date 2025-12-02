@@ -1,0 +1,20 @@
+-- Run this SQL in your MySQL server
+
+CREATE DATABASE IF NOT EXISTS recipe_finder;
+USE recipe_finder;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS favorites (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  recipe_id VARCHAR(50) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  image VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
